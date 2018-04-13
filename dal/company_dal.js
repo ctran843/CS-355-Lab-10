@@ -22,7 +22,7 @@ exports.insert = function(params, callback) {
             callback(err, result);
         } else {
             // If the company was successfully inserted,
-            // then then auto generated company_id value will be stored
+            // then the auto generated company_id value will be stored
             // in the result.insertId property. We will use that to
             // then insert records into the company_address table
             var company_id = result.insertId;
@@ -56,5 +56,14 @@ exports.insert = function(params, callback) {
             });
         }
 
+    });
+};
+
+exports.getinfo = function(company_id, callback) {
+    var query = 'CALL company_getinfo(?)';
+    var queryData = [company_id];
+
+    connection.query(query, queryData, function(err, result) {
+        callback(err, result);
     });
 };

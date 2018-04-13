@@ -18,5 +18,26 @@
             </tr>
             <% } %>
         </table>
+
+        <br />
+
+    <table border="1">
+        <tr><th>Name</th><th>Actions</th></tr>
+        <% for(var i=0; companies.length > i; i++ ) { %>
+        <tr>
+            <td>
+                <a href="/company/?company_id=<%= companies[i].company_id %>">
+                <%= companies[i].company_name %>
+                </a>
+
+            </td>
+            <td>
+                <a href="/company/edit/?company_id=<%= companies[i].company_id %>">
+                    Edit
+                </a>
+            </td>
+        </tr>
+        <% } %>
+    </table>
     </body>
 </HTML>

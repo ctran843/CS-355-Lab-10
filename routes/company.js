@@ -41,4 +41,16 @@ router.get('/insert', function(req, res) {
     });
 });
 
+router.get('/edit', function(req, res) {
+    company_dal.getinfo(req.query.company_id, function(err, result) {
+        if (err) {
+            res.send(err);
+        }
+        else {
+            res.render('company/company_update', {company: result[0][0], address_result: result[1]}
+            );
+        }
+    });
+});
+
 module.exports = router;
