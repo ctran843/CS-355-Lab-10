@@ -10,8 +10,7 @@
            id="company_id"
            name="company_id"
            value="<%= company.company_id %>"
-
-    />
+           />
 
     Company Name: <input
             id="company_name"
@@ -24,9 +23,9 @@
     Address
     <br />
     <% for (var i=0; address_result.length > i; i++ ) {
-        var checked = "";
+    var checked = "";
 
-    if (address_result[i].company_id != null) {
+    if(address_result[i].company_id != null) {
         checked = "checked";
     }
     %>
@@ -38,6 +37,6 @@
 
     <br />
     <input type="submit" />
-</form >
+</form>
 </body>
 </html>

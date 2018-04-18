@@ -13,7 +13,7 @@ exports.getAll = function(callback) {
 };
 
 exports.insert = function(params, callback) {
-    var query = 'INSERT INTO account (first_name, last_name) VALUES (?, ?, ?)';
+    var query = 'INSERT INTO account (first_name, last_name, email) VALUES (?, ?, ?)';
     var queryData = [params.first_name, params.last_name, params.email];
 
     connection.query(query, queryData, function(err, result) {
@@ -21,4 +21,3 @@ exports.insert = function(params, callback) {
     });
 };
 
-// comment comment

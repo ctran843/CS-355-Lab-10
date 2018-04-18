@@ -67,3 +67,49 @@ exports.getinfo = function(company_id, callback) {
         callback(err, result);
     });
 };
+
+// declare the function so it can be used locally
+var companyAddressInsert = function(company_id, addressIdArray, callback) {
+    // note that there is only one question mark in values
+    var query = 'INSERT INTO company_address (company_id, address_id) VALUES ?';
+
+    // to bulk insert records we create a multidimensional array of the values
+    var companyAddressData = [];
+    if (addressIdArray.constructor === Array) {
+        for (var i = 0; i < addressIdArray.length; i++) {
+            companyAddressData.push([company_id, addressIdArray[i]]);
+        }
+    }
+    else {
+        companyAddressData.push([company_id, addressIdArray]);
+    }
+    connection.query(query, [companyAddressData], function(err, result) {
+        callback(err, result);
+    });
+};
+
+var companyAddressUpdate = function(company_id, addressIdArray, callback) {
+    // first we need to remove all the entries, and then re-insert new ones
+    var query = 'CALL company_address_delete(?)';
+
+    connection.query(query, company_id, function (err, result) {
+        if(err || addressIdArray === undefined) {
+            // if error or no address were selected then return
+            callback(err, result);
+        } else { // insert addresses
+            companyAddressInsert(company_id, addressIdArray, callback);
+        }
+    });
+};
+
+exports.update = function(params, callback) {
+    var query = 'UPDATE company SET company_name = ? WHERE company_id = ?';
+
+    var queryData = [params.company_name, params.company_id];
+
+    connection.query(query, queryData, function(err, result) {
+        companyAddressUpdate(params.company_id, params.address_id, function (err, result) {
+            callback(err, result);
+        });
+    });
+};
