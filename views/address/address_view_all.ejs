@@ -6,17 +6,25 @@
 <body>
 <h1>Addresses</h1>
 
+<a href="/address/add"> Add New Address</a>
+
+<br />
+<br />
+
 <table border=1">
     <tr>
-        <th>ID</th>
         <th>Street</th>
         <th>Zip Code</th>
     </tr>
     <% for(var i = 0; i < addresses.length; i++) { %>
     <tr>
-        <td><%= addresses[i].address_id %></td>
         <td><%= addresses[i].street %></td>
         <td><%= addresses[i].zip_code %></td>
+        <td>
+            <a href="/address/edit/?address_id=<%= addresses[i].address_id %>" >
+                Edit
+            </a>
+        </td>
     </tr>
     <% } %>
 </table>

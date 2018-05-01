@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<HTML>
+<head>
+    <title>School - View All</title>
+</head>
+<body>
+<h1>Schools</h1>
+
+<a href="/school/add"> Add New School</a>
+
+<br />
+<br />
+
+<table border=1">
+    <tr>
+        <th>School</th>
+        <th>Address</th>
+        <th>Edit</th>
+    </tr>
+    <% for(var i = 0; i < schools.length; i++) { %>
+    <tr>
+        <td><%= schools[i].school_name %></td>
+        <td><%= addresses[i].street + ', '
+            + addresses[i].zip_code %></td>
+        <td>
+            <a href="/school/edit/?school_id=<%= schools[i].school_id %>" >
+                Edit
+            </a>
+        </td>
+    </tr>
+    <% } %>
+</table>
+</body>
+</HTML>

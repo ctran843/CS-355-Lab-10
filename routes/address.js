@@ -30,5 +30,25 @@ router.get('/insert', function(req, res) {
     });
 });
 
+router.get('/edit', function(req, res) {
+    address_dal.getinfo(req.query.address_id, function(err, result) {
+        if (err) { res.send(err); }
+        else {
+            res.render('address/address_update',
+                {addresses: result[0] });
+        }
+    });
+});
+
+router.get('/update', function(req, res) {
+    address_dal.update(req.query, function(err, result){
+        if(err) {
+            res.send(err);
+        }
+        else {
+            res.redirect(302, '/address/all');
+        }
+    });
+});
 
 module.exports = router;

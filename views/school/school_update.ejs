@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <title>School - Edit</title>
+    </head>
+    <body>
+    <h1>Edit School</h1>
+    <form action="/school/update" method="get">
+        <input type="hidden"
+               id="school_id"
+               name="school_id"
+               value="<%= schools.school_id %>"
+               />
+        School Name: <input
+                id="school_name"
+                name="school_name"
+                type="text"
+                value="<%= schools.school_name %>"
+        />
+        <br />
+        <br />
+        Address
+        <select name="address_id">
+        <% for (var i=0; address_result.length > i; i++ ) {
+            var selected = "";
+
+            if(address_result[i].address_id == schools.address_id) {
+                selected = "selected";
+            }
+        %>
+        <option value="<%=
+ address_result[i].address_id %>" <%= selected %> > <%= address_result[i].street + ', '
+        + address_result[i].zip_code %>
+        <br />
+        <% } %>
+        </select>
+
+        <br />
+        <br />
+        <input type="submit" />
+    </form>
+    </body>
+    </html>

@@ -6,17 +6,26 @@
 <body>
 <h1>Skills</h1>
 
+<a href="/skill/add"> Add New Skill</a>
+
+<br />
+<br />
+
 <table border=1">
     <tr>
-        <th>ID</th>
         <th>Name</th>
         <th>Description</th>
+        <th>Edit</th>
     </tr>
     <% for(var i = 0; i < skills.length; i++) { %>
     <tr>
-        <td><%= skills[i].skill_id %></td>
         <td><%= skills[i].skill_name %></td>
         <td><%= skills[i].description %></td>
+        <td>
+            <a href="/skill/edit/?skill_id=<%= skills[i].skill_id %>" >
+                Edit
+            </a>
+        </td>
     </tr>
     <% } %>
 </table>

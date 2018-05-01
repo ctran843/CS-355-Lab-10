@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Address - Edit</title>
+</head>
+<body>
+<h1>Edit Address</h1>
+<form action="/address/update" method="get">
+    <input type="hidden"
+           id="address_id"
+           name="address_id"
+           value="<%= addresses.address_id %>"
+    />
+    Street: <input
+            id="street"
+            name="street"
+            type="text"
+            value="<%= addresses.street %>"
+    />
+    <br />
+    <br />
+    Zip Code: <input
+            id="zip_code"
+            name="zip_code"
+            type="text"
+            value="<%= addresses.zip_code %>"
+    />
+    <br />
+    <input type="submit" />
+</form>
+</body>
+</html>

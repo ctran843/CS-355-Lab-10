@@ -31,4 +31,25 @@ router.get('/insert', function(req, res) {
     });
 });
 
+router.get('/edit', function(req, res) {
+    account_dal.getinfo(req.query.account_id, function(err, result) {
+        if (err) { res.send(err); }
+        else {
+            res.render('account/account_update',
+                {accounts: result[0] });
+        }
+    });
+});
+
+router.get('/update', function(req, res) {
+    account_dal.update(req.query, function(err, result){
+        if(err) {
+            res.send(err);
+        }
+        else {
+            res.redirect(302, '/account/all');
+        }
+    });
+});
+
 module.exports = router;
